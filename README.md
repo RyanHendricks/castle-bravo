@@ -18,11 +18,19 @@ Docker
 ## Getting Started
 
 ```bash
-docker volume create pbnp-data
+docker volume create blockchain-node-platform-data
 
 docker run -d -p 9000:9000 --name blockchain-node-platform --restart always -v /var/run/docker.sock:/var/run/docker.sock -v blockchain-node-platform-data:/data registry.gitlab.com/appealtoheavenllc/blockchain-node-platform:latest -H unix:///var/run/docker.sock
 
 ```
+
+## Screenshots
+
+
+![https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot1.png](https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot1.png)
+
+![https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot2.png](https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot2.png)
+
 
 ## Licensing
 
