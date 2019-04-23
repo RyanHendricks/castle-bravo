@@ -1,0 +1,613 @@
+[
+  {
+    "type": 1,
+    "title": "Cosmos",
+    "description": "Cosmos Full Node (Gaiad & Gaiacli) with Rest-Server",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+
+    
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/cosmos.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-cosmos:latest",
+    "ports": [
+      "26656:26656/tcp",
+      "26657:26657/tcp",
+      "26658:26658/tcp",
+      "1317:1317/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "env": [
+      {
+        "name": "MONIKER",
+        "label": "Moniker",
+        "description": "The name of the node"
+      },
+      {
+        "name": "CHAIN_ID",
+        "label": "Chain Id",
+        "description": "URL of the genesis.json file for network configuration.",
+        "select": [
+          {
+            "text": "Cosmoshub-2",
+            "description": "Cosmos Mainnet",
+            "value": "cosmoshub-2"
+          },
+          {
+            "text": "Gaia-13003",
+            "description": "Gaia 13K Testnet",
+            "value": "gaia-13003",
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "GENESIS_URL",
+        "label": "Genesis.json URL",
+        "description": "Use a specific genesis.json. Must match the chain ID given for CHAIN_ID.",
+        "select": [
+          {
+            "text": "Cosmoshub-2",
+            "description": "Cosmos mainnet",
+            "value": "https://raw.githubusercontent.com/cosmos/launch/master/genesis.json"
+          },
+          {
+            "text": "Gaia-13003",
+            "description": "Gaia 13K Testnet",
+            "value": "https://raw.githubusercontent.com/cosmos/testnets/master/gaia-13k/genesis.json",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/.gaiad"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "IRIS Network",
+    "description": "IrisNet Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/irisnet.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-irisnet:latest",
+    "ports": [
+      "26656:26656/tcp",
+      "26657:26657/tcp",
+      "26658:26658/tcp",
+      "1317:1317/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/.irisnet"
+      }
+    ],
+    "env": [
+      {
+        "name": "MONIKER",
+        "label": "Moniker",
+        "description": "The name of the node"
+      },
+      {
+        "name": "CHAIN_ID",
+        "label": "Chain Id"
+      },
+      {
+        "name": "GENESIS_URL",
+        "label": "Genesis.json URL",
+        "description": "Use a specific genesis.json. Must match the chain ID given for CHAIN_ID."
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Terra",
+    "description": "Terra Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/terra.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-terra:latest",
+    "ports": [
+      "26656:26656/tcp",
+      "26657:26657/tcp",
+      "26658:26658/tcp",
+      "1317:1317/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/.terrad"
+      }
+    ],
+    "env": [
+      {
+        "name": "MONIKER",
+        "label": "Moniker",
+        "description": "The name of the node"
+      },
+      {
+        "name": "GENESIS_URL",
+        "label": "Genesis.json URL",
+        "description": "URL of the genesis.json file for network configuration.",
+        "select": [
+          {
+            "text": "Columbus Drill",
+            "description": "columbus-drill/genesis.json",
+            "value": "https://raw.githubusercontent.com/terra-project/networks/master/columbus-drill/genesis.json",
+            "default": true
+          },
+          {
+            "text": "Mainnet",
+            "description": "master/genesis.json",
+            "value": "https://raw.githubusercontent.com/terra-project/networks/master/columbus-drill/genesis.json"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Dash",
+    "description": "Dash Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/dash.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-dash:latest",
+    "ports": [
+      "9999:9999/tcp",
+      "9998:9998/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/root/.dashcore"
+      }
+    ],
+    "env": [
+      {
+        "name": "VERSION",
+        "label": "Dash Version",
+        "description": "Should be entered as x.xx.x and without the 'v' prefix",
+        "select": [
+          {
+            "text": "0.13.3",
+            "value": "0.13.3",
+            "default": true
+          }
+        ]
+      },
+      {
+        "name": "EXTERNAL_IP",
+        "label": "IP (or blank for discover)",
+        "description": "External ipv4 address used by dash to broadcast. Leave blank and the node will automatically attempt to determine the IP.",
+        "default": ""
+      },
+      {
+        "name": "RPC_USER",
+        "label": "RPC Password",
+        "description": "Password for JSON-RPC connections",
+        "default": "username"
+      },
+      {
+        "name": "RPC_PASSWORD",
+        "label": "RPC Username",
+        "description": "Username for JSON-RPC connections",
+        "default": "password"
+      },
+      {
+        "name": "RPC_ALLOW_IP",
+        "label": "RPC allowed IPs",
+        "description": "Whitelist IP addresses to interact with JSON-RPC",
+        "default": "::/0"
+      },
+      {
+        "name": "DB_CACHE",
+        "label": "Database Cache Size",
+        "description": "Set database cache size in megabytes (4 to 16384)",
+        "default": "2048"
+      },
+      {
+        "name": "TX_INDEX",
+        "label": "Tx Index",
+        "description": "Maintain a full transaction index, used by the getrawtransaction rpc call.",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "ADDRESS_INDEX",
+        "label": "Address Index",
+        "description": "Maintain a full address index, used to query for the balance, txids and unspent outputs for addresses",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "TIMESTAMP_INDEX",
+        "label": "Timestamp Index",
+        "description": "Maintain a timestamp index for block hashes, used to query blocks hashes by a range of timestamps",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "SPENT_INDEX",
+        "label": "Spent Index",
+        "description": "Maintain a full spent index, used to query the spending txid and input index for an outpoint",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "SERVER",
+        "label": "Accept CLI and JSON-RPC commands",
+        "description": "Accept command line and JSON-RPC commands",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "LISTEN",
+        "label": "Listen",
+        "description": "TK",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "name": "LOG_TIMESTAMPS",
+        "label": "Log Timestamps",
+        "description": "Log timestamps with blocks for queries based on time",
+        "select": [
+          {
+            "text": "Yes",
+            "value": "1",
+            "default": true
+          },
+          {
+            "text": "No",
+            "value": "0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Bitshares",
+    "description": "Bitshares Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/bitshares.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-bitshares:latest",
+    "ports": [
+      "8090:8090/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/blockchain"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Aeternity",
+    "description": "Aeternity Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/aeternity.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-aeternity:latest",
+    "ports": [
+      "3013:3013/tcp",
+      "3014:3014/tcp",
+      "3015:3015/tcp",
+      "3113:3113/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/home/aeternity/.aeternity"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Ethereum",
+    "description": "Coming Soon - Ethereum Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/ethereum.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-cosmos:latest",
+    "ports": [
+
+    ],
+    "restart_policy": "unless-stopped",
+    "env": [
+    
+    ],
+    "volumes": [
+      {
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Tezos",
+    "description": "Coming Soon - Tezos Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/tezos.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-cosmos:latest",
+    "ports": [
+
+    ],
+    "restart_policy": "unless-stopped",
+    "env": [
+    
+    ],
+    "volumes": [
+      {
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Bitcoin",
+    "description": "Coming Soon - Bitcoin Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/bitcoin.png",
+    "registry": "registry.gitlab.com",
+    "image": "appealtoheavenllc/docker-cosmos:latest",
+    "ports": [
+
+    ],
+    "restart_policy": "unless-stopped",
+    "env": [
+    
+    ],
+    "volumes": [
+      {
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Caddy",
+    "description": "HTTP/2 web server with automatic HTTPS",
+    "categories": [
+      "webserver"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/caddy.png",
+    "image": "abiosoft/caddy:latest",
+    "ports": [
+      "80/tcp",
+      "443/tcp",
+      "2015/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/root/.caddy"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "MySQL",
+    "description": "The most popular open-source database",
+    "categories": [
+      "database"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/mysql.png",
+    "image": "mysql:latest",
+    "env": [
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "Root password"
+      }
+    ],
+    "ports": [
+      "3306/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/var/lib/mysql"
+      }
+    ]
+  },
+  {
+    "type": 2,
+    "title": "Wordpress",
+    "description": "Wordpress setup with a MySQL database",
+    "note": "Deploys a Wordpress instance connected to a MySQL database.",
+    "categories": [
+      "CMS"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/wordpress/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      }
+    ]
+  },
+  {
+    "type": 3,
+    "title": "Wordpress",
+    "description": "Wordpress setup with a MySQL database",
+    "note": "Deploys a Wordpress instance connected to a MySQL database.",
+    "categories": [
+      "CMS"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/wordpress/docker-compose.yml"
+    },
+    "env": [
+      {
+        "name": "MYSQL_DATABASE_PASSWORD",
+        "label": "Database root password",
+        "description": "Password used by the MySQL root user."
+      }
+    ]
+  },
+  {
+    "type": 2,
+    "title": "Microsoft OMS Agent",
+    "description": "Microsoft Operations Management Suite Linux agent.",
+    "categories": [
+      "OPS"
+    ],
+    "platform": "linux",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/microsoft-oms/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "AZURE_WORKSPACE_ID",
+        "label": "Workspace ID",
+        "description": "Azure Workspace ID"
+      },
+      {
+        "name": "AZURE_PRIMARY_KEY",
+        "label": "Primary key",
+        "description": "Azure primary key"
+      }
+    ]
+  },
+  {
+    "title": "Sematext Docker Agent",
+    "type": 2,
+    "categories": [
+      "Log Management",
+      "Monitoring"
+    ],
+    "description": "Collect logs, metrics and docker events",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/sematext_agent.png",
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/sematext-agent-docker/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "LOGSENE_TOKEN",
+        "label": "Logs token"
+      },
+      {
+        "name": "SPM_TOKEN",
+        "label": "SPM monitoring token"
+      }
+    ]
+  },
+  {
+    "title": "Datadog agent",
+    "type": 2,
+    "categories": [
+      "Monitoring"
+    ],
+    "description": "Collect events and metrics",
+    "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/datadog_agent.png",
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/portainer/templates",
+      "stackfile": "stacks/datadog-agent/docker-stack.yml"
+    },
+    "env": [
+      {
+        "name": "API_KEY",
+        "label": "Datadog API key"
+      }
+    ]
+  }
+]
