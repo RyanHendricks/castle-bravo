@@ -7,8 +7,6 @@
       "blockchain"
     ],
     "platform": "linux",
-
-    
     "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/cosmos.png",
     "registry": "registry.gitlab.com",
     "image": "appealtoheavenllc/docker-cosmos:latest",
@@ -28,7 +26,7 @@
       {
         "name": "CHAIN_ID",
         "label": "Chain Id",
-        "description": "URL of the genesis.json file for network configuration.",
+        "description": "Chain ID for gaiad configuration. Selection must match genesis url otherwise you will have to fix the configuration manually.",
         "select": [
           {
             "text": "Cosmoshub-2",
@@ -95,11 +93,14 @@
       {
         "name": "MONIKER",
         "label": "Moniker",
-        "description": "The name of the node"
+        "description": "The name of the node",
+        "default": "no-name-node"
       },
       {
         "name": "CHAIN_ID",
-        "label": "Chain Id"
+        "label": "Chain Id",
+        "description": "Chain ID for configuration. Selection must match genesis url otherwise you will have to fix the configuration manually.",
+        "default": "irishub"
       },
       {
         "name": "GENESIS_URL",
