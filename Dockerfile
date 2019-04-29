@@ -10,6 +10,7 @@ COPY /dist /
 
 # remove original templates.json and replace with custom templates.json
 RUN rm /templates.json
+
 # RUN curl https://gitlab.com/appealtoheavenllc/portainer-templates/raw/master/node-templates.json > /templates.json
 COPY /src/node-templates.json /templates.json
 
