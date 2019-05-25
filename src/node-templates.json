@@ -8,8 +8,7 @@
     ],
     "platform": "linux",
     "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/cosmos.png",
-    "registry": "registry.gitlab.com",
-    "image": "appealtoheavenllc/docker-cosmos:latest",
+    "image": "ryanhendricks/docker-cosmos:latest",
     "ports": [
       "26656:26656/tcp",
       "26657:26657/tcp",
