@@ -1,6 +1,4 @@
-# Blockchain Node Platform (PBNP)
-
-![https://gitlab.com/appealtoheavenllc/blockchain-node-platform/](https://gitlab.com/appealtoheavenllc/blockchain-node-platform/badges/master/pipeline.svg)
+# Blockchain Node Platform
 
 Portainer with modified app templates for managing and deploying Blockchain Nodes.
 
@@ -20,9 +18,9 @@ Docker
 ## Getting Started
 
 ```bash
-docker volume create blockchain-node-platform-data
+docker volume create castle-bravo-data
 
-docker run -d -p 9000:9000 --name blockchain-node-platform --restart always -v /var/run/docker.sock:/var/run/docker.sock -v blockchain-node-platform-data:/data registry.gitlab.com/appealtoheavenllc/blockchain-node-platform:latest -H unix:///var/run/docker.sock
+docker run -d -p 9000:9000 --name castle-bravo --restart always -v /var/run/docker.sock:/var/run/docker.sock -v castle-bravo-data:/data ryanhendricks/castle-bravo:latest -H unix:///var/run/docker.sock
 
 ```
 
