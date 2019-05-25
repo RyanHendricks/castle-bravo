@@ -383,25 +383,20 @@
   {
     "type": 1,
     "title": "Ethereum",
-    "description": "Coming Soon - Ethereum Node",
+    "description": "RPC and WS Api Data Node",
     "categories": [
       "blockchain"
     ],
     "platform": "linux",
-    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/ethereum.png",
-    "registry": "registry.gitlab.com",
-    "image": "appealtoheavenllc/docker-cosmos:latest",
     "ports": [
-
+      "8545:8545/tcp",
+      "8546:8546/tcp",
+      "30303:30303/tcp",
+      "30303:30303/udp"
     ],
-    "restart_policy": "unless-stopped",
-    "env": [
-    
-    ],
-    "volumes": [
-      {
-      }
-    ]
+    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/ethereum.png",
+    "image": "ryanhendricks/docker-ethereum:data-node",
+    "restart_policy": "unless-stopped"
   },
   {
     "type": 1,
