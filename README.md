@@ -1,5 +1,7 @@
 # Blockchain Node Platform (PBNP)
 
+![https://gitlab.com/appealtoheavenllc/blockchain-node-platform/](https://gitlab.com/appealtoheavenllc/blockchain-node-platform/badges/master/pipeline.svg)
+
 Portainer with modified app templates for managing and deploying Blockchain Nodes.
 
 ## Information
@@ -25,7 +27,6 @@ docker run -d -p 9000:9000 --name blockchain-node-platform --restart always -v /
 ```
 
 ## Screenshots
-
 
 ![https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot1.png](https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/img/screenshot1.png)
 
