@@ -7,7 +7,7 @@
       "blockchain"
     ],
     "platform": "linux",
-    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/cosmos.png",
+    "logo": "https://github.com/RyanHendricks/castle-bravo/raw/master/src/vendor/cosmos.png",
     "image": "ryanhendricks/docker-cosmos:latest",
     "ports": [
       "26656:26656/tcp",
@@ -28,15 +28,15 @@
         "description": "Chain ID for gaiad configuration. Selection must match genesis url otherwise you will have to fix the configuration manually.",
         "select": [
           {
-            "text": "Cosmoshub-2",
+            "text": "Cosmoshub-3",
             "description": "Cosmos Mainnet",
-            "value": "cosmoshub-2"
+            "value": "cosmoshub-3",
+            "default": true
           },
           {
-            "text": "Gaia-13003",
+            "text": "Gaia-13007",
             "description": "Gaia 13K Testnet",
-            "value": "gaia-13003",
-            "default": true
+            "value": "gaia-13007"
           }
         ]
       },
@@ -46,15 +46,15 @@
         "description": "Use a specific genesis.json. Must match the chain ID given for CHAIN_ID.",
         "select": [
           {
-            "text": "Cosmoshub-2",
+            "text": "Cosmoshub-3",
             "description": "Cosmos mainnet",
-            "value": "https://raw.githubusercontent.com/cosmos/launch/master/genesis.json"
+            "value": "https://raw.githubusercontent.com/cosmos/launch/master/genesis.json",
+            "default": true
           },
           {
             "text": "Gaia-13003",
             "description": "Gaia 13K Testnet",
-            "value": "https://raw.githubusercontent.com/cosmos/testnets/master/gaia-13k/genesis.json",
-            "default": true
+            "value": "https://raw.githubusercontent.com/cosmos/testnets/master/gaia-13k/genesis.json"
           }
         ]
       }
@@ -73,9 +73,8 @@
       "blockchain"
     ],
     "platform": "linux",
-    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/irisnet.png",
-    "registry": "registry.gitlab.com",
-    "image": "appealtoheavenllc/docker-irisnet:latest",
+    "logo": "https://github.com/RyanHendricks/castle-bravo/raw/master/src/vendor/iris.svg",
+    "image": "ryanhendricks/docker-irisnet:latest",
     "ports": [
       "26656:26656/tcp",
       "26657:26657/tcp",
@@ -110,15 +109,57 @@
   },
   {
     "type": 1,
+    "title": "Kava",
+    "description": "Kava Full Node",
+    "categories": [
+      "blockchain"
+    ],
+    "platform": "linux",
+    "logo": "https://github.com/RyanHendricks/castle-bravo/raw/master/src/vendor/kava.svg",
+    "image": "ryanhendricks/docker-kava:latest",
+    "ports": [
+      "26656:26656/tcp",
+      "26657:26657/tcp",
+      "26658:26658/tcp",
+      "1317:1317/tcp"
+    ],
+    "restart_policy": "unless-stopped",
+    "volumes": [
+      {
+        "container": "/.kava"
+      }
+    ],
+    "env": [
+      {
+        "name": "MONIKER",
+        "label": "Moniker",
+        "description": "The name of the node",
+        "default": "no-name-node"
+      },
+      {
+        "name": "CHAIN_ID",
+        "label": "Chain Id",
+        "description": "Chain ID for configuration.",
+        "default": "kava-3"
+      },
+      {
+        "name": "GENESIS_URL",
+        "label": "Genesis.json URL",
+        "description": "Use a specific genesis.json. Must match the chain ID given for CHAIN_ID.",
+        "default": "https://raw.githubusercontent.com/Kava-Labs/launch/master/kava-3/genesis.json"
+      }
+    ]
+  },
+  {
+    "type": 1,
     "title": "Terra",
     "description": "Terra Full Node",
     "categories": [
       "blockchain"
     ],
     "platform": "linux",
-    "logo": "https://gitlab.com/appealtoheavenllc/blockchain-node-platform/raw/master/src/vendor/terra.png",
-    "registry": "registry.gitlab.com",
-    "image": "appealtoheavenllc/docker-terra:latest",
+    "logo": "https://github.com/RyanHendricks/castle-bravo/raw/master/src/vendor/terra.svg",
+    "image": "ryanhendricks/docker-terra:latest",
     "ports": [
       "26656:26656/tcp",
       "26657:26657/tcp",

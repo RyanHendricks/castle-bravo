@@ -1,7 +1,9 @@
-FROM alpine:latest
+FROM alpine:edge
 
-# update and install dependencies
-RUN apk --no-cache --update upgrade && apk --no-cache add ca-certificates curl
+ENV PACKAGES ca-certificates curl
+
+# Set up dependencies
+RUN apk add --update --no-cache $PACKAGES
 
 WORKDIR /
 
@@ -11,8 +13,9 @@ COPY /dist /
 # remove original templates.json and replace with custom templates.json
 RUN rm /templates.json
 
-# RUN curl https://gitlab.com/appealtoheavenllc/portainer-templates/raw/master/node-templates.json > /templates.json
 COPY /src/node-templates.json /templates.json
+COPY /src/vendor /public
+
 
 VOLUME /data
 WORKDIR /
